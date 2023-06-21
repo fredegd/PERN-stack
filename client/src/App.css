@@ -1,0 +1,56 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  /* padding: 2rem; */
+  text-align: center;
+}
+
+.book-card-img {
+  width: 20em;
+  padding: 1em;
+
+}
+.nav-container{
+  width: 28em;
+  height: 5em;
+  position: sticky;
+  background-color: blue;
+  display: flex;
+align-items: center;
+justify-content: center;
+
+}
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  font-size: 2em;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+.navbar a:hover {
+  color: red;
+  font-size: 2.2rem;
+}
+
+.pages{
+  position:relative;
+}
+
+
+.form-container{
+padding-top: 3em;
+width: 80%;
+}
+.form-input{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.input-item{
+  margin: 1em;
+  height: 1.5em;
+}

@@ -36,7 +36,7 @@ export default function Paginator() {
         prev page
       </button>
       <button onClick={handleNext}>next page</button>
-      <p>{page}</p>
+      <p>page: {page} of 3</p>
       <Books books={books} page={page} />
     </div>
   );

@@ -12,7 +12,9 @@ const getBooks = async (req, res) => {
 
 const getLimitedBooks = async (req, res) => {
   try {
-    const { rows } = await pool.query("SELECT * FROM books LIMIT $1 OFFSET $2;",[4,0]);
+    const { limit, skip } = req.query;
+
+    const { rows } = await pool.query("SELECT * FROM books LIMIT $1 OFFSET $2;",[limit, skip]);
     res.status(200).json(rows);
   } catch (error) {
     console.error(error);

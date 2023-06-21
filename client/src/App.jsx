@@ -6,6 +6,7 @@ import Landing from "./components/Landing";
 import Books from "./components/Books";
 import BookDetails from "./components/BookDetails";
 import InputForm from "./components/InputForm";
+import Paginator from "./components/Paginator";
 
 import "./App.css";
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/books/:id" element={<BookDetails />} />
         <Route path="/insert-book" element={<InputForm />} />
       </Routes>
+      <Paginator />
       </div>
       
     </>

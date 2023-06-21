@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import axios from "axios"
 
+import Paginator from "./Paginator";
 import BookCard from '../components/BookCard';
 
 export default function Books() {
@@ -20,9 +21,9 @@ export default function Books() {
 
   return (
    <>
-   <div>
+   <div className='paged'>
    <h1>Our Books:</h1>
-
+   <Paginator />
    {
       books.map((book)=>{
         return (

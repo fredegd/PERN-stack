@@ -8,12 +8,15 @@
   align-items: center;
 }
 
+.paged{
+margin-top: 5em;
+}
+
 .book-details{
   border: solid black;
   width: 100%;
   display: flex;
   flex-direction: row;
-  margin: 2em;
 }
 
 .book-card{
@@ -22,15 +25,16 @@ margin: 2em;
 }
 
 .book-card-img {
-  width: 80%;
+  width: 50%;
 }
 .book-card-text{
   line-height: 0.9em;
 }
+
 .nav-container {
   width: 28em;
   height: 5em;
-  position: sticky;
+  position: fixed;
   background-color: blue;
   display: flex;
   align-items: center;

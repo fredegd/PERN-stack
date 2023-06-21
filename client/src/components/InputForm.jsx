@@ -27,7 +27,7 @@ export default function InputForm() {
 
   return (
     <>
-    <div className="form-container">
+    <div className="form-container paged">
     <form className="form-input" onSubmit={handleSubmit(onSubmit)}>
       {/* register your input into the hook by invoking the "register" function */}
       <input className="input-item" defaultValue="" {...register("title", { required: true })} placeholder="title"/>

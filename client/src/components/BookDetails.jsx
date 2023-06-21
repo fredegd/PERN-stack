@@ -20,7 +20,7 @@ export default function BookDetails() {
 
 
   return (
-    <div className='book-details'>
+    <div className='book-details paged'>
     <img src={bookDetail.cover_url} alt={bookDetail.title} className="book-card-img" />
     <div className='book-info'>
     <h1>{bookDetail.title}</h1>

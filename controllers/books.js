@@ -10,6 +10,16 @@ const getBooks = async (req, res) => {
   }
 };
 
+const getLimitedBooks = async (req, res) => {
+  try {
+    const { rows } = await pool.query("SELECT * FROM books LIMIT $1 OFFSET $2;",[4,0]);
+    res.status(200).json(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Something went wrong");
+  }
+};
+
 const getBook = async (req, res) => {
   try {
     const { id } = req.params;
@@ -71,4 +81,4 @@ const deleteBook = async (req, res) => {
   }
 };
 
-module.exports = { getBooks, getBook, createBook, updateBook, deleteBook };
+module.exports = { getBooks, getLimitedBooks, getBook, createBook, updateBook, deleteBook };

@@ -34,10 +34,10 @@ const getBook = async (req, res) => {
 
 const createBook = async (req, res) => {
   try {
-    const { title, author, description, category, cover_url, publishedAt, isActive } = req.body;
+    const { title, author, description, category, cover_url, publishedat, isActive } = req.body;
     const { rows } = await pool.query(
-      "INSERT INTO books (title, author, description, category, cover_url, publishedAt ) VALUES ($1, $2, $3, $4, $5, $6);",
-                         [ title, author, description, category, cover_url, publishedAt]
+      "INSERT INTO books (title, author, description, category, cover_url, publishedat ) VALUES ($1, $2, $3, $4, $5, $6);",
+                         [ title, author, description, category, cover_url, publishedat ]
     );
     res.status(200).json(rows);
   } catch (error) {

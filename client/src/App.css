@@ -3,22 +3,39 @@
   margin: 0 auto;
   /* padding: 2rem; */
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.book-details{
+  border: solid black;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 2em;
+}
+
+.book-card{
+width: 24em;
+border: 2px solid red;
+margin: 2em;
 }
 
 .book-card-img {
-  width: 20em;
-  padding: 1em;
-
+  width: 100%;
 }
-.nav-container{
+.book-card-text{
+  line-height: 0.9em;
+}
+.nav-container {
   width: 28em;
   height: 5em;
   position: sticky;
   background-color: blue;
   display: flex;
-align-items: center;
-justify-content: center;
-
+  align-items: center;
+  justify-content: center;
 }
 .navbar {
   width: 100%;
@@ -35,22 +52,37 @@ a {
   font-size: 2.2rem;
 }
 
-.pages{
-  position:relative;
-}
-
-
-.form-container{
-padding-top: 3em;
-width: 80%;
-}
-.form-input{
+.pages {
+  width: 30em;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
+ 
 }
 
-.input-item{
-  margin: 1em;
+
+.form-container {
+  padding-top: 3em;
+  width: 100%;
+}
+.form-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-item {
+  width: 80%;
+
+  margin: 0.5em 0;
   height: 1.5em;
+}
+
+
+
+@media screen and (max-width: 500px) {
+  .pages{
+    width: 24em;
+    background-color: lightgreen;
+  }
 }

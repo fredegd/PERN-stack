@@ -20,13 +20,16 @@ export default function BookDetails() {
 
 
   return (
-    <div>
+    <div className='book-details'>
     <img src={bookDetail.cover_url} alt={bookDetail.title} className="book-card-img" />
-    <h3>{bookDetail.title}</h3>
+    <div className='book-info'>
+    <h1>{bookDetail.title}</h1>
     <h2>{bookDetail.author}</h2>
     <p>{bookDetail.description}</p>
     <p>Caregory: {bookDetail.category}</p>
-    <p>Published by: {bookDetail.publisher}</p>
+    <p>Published by: {bookDetail.publishedat}</p>
+    </div>
+    
   </div>
   )
 }

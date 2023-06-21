@@ -20,14 +20,17 @@ export default function Books() {
 
   return (
    <>
-   
-    {
+   <div>
+   {
       books.map((book)=>{
-        return (<Link to={`/books/${book.id}`} key={book.id}>
+        return (
+        <Link to={`/books/${book.id}`} key={book.id}>
             <BookCard book={book}/>
         </Link>)
       })
     }
+   </div>
+   
    </>
   )
 }

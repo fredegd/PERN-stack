@@ -1,91 +1,48 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form"
 import axios from 'axios';
 
 
 export default function InputForm() {
-  const [formData, setFormData] = useState({});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post('http://localhost:3003/api/books', formData)
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    reset,
+  } = useForm()
+
+  const onSubmit = (data) => {
+    console.log(data)
+    axios.post('http://localhost:3003/api/books', data)
       .then(response => {
         console.log('Success:', response.data);
+        reset();
       })
       .catch(error => {
         console.error('Error:', error);
       });
-  };
-
+  }
 
   return (
     <>
-      <div className="form-container">
-        <form
-          className="form-input"
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSubmit(e)
-            console.log(formData);
-          }}
-        >
-          <label>
-            Title:
-            <input
-              type="text"
-              name="title"
-              className="input-item"
-              onChange={(e) =>
-                setFormData({ ...formData, title: e.target.value })
-              }
-            />
-          </label>
-          <label>
-            Author:
-            <input
-              type="text"
-              name="author"
-              className="input-item"
-              onChange={(e) =>
-                setFormData({ ...formData, author: e.target.value })
-              }
-            />
-          </label>
-          <label>
-            Description:
-            <input
-              type="text"
-              name="description"
-              className="input-item"
-              onChange={(e) =>
-                setFormData({ ...formData, description: e.target.value })
-              }
-            />
-          </label>
-          <label>
-            Category:
-            <input
-              type="text"
-              name="category"
-              className="input-item"
-              onChange={(e) =>
-                setFormData({ ...formData, category: e.target.value })
-              }
-            />
-          </label>
-          <label>
-            Cover URL:
-            <input
-              type="text"
-              name="coverURL"
-              className="input-item"
-              onChange={(e) =>
-                setFormData({ ...formData, cover_url: e.target.value })
-              }
-            />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
+    <div className="form-container">
+    <form className="form-input" onSubmit={handleSubmit(onSubmit)}>
+      {/* register your input into the hook by invoking the "register" function */}
+      <input className="input-item" defaultValue="" {...register("title", { required: true })} placeholder="title"/>
+      <input className="input-item" defaultValue="" {...register("author", { required: true })} placeholder="Author"/>
+      <input className="input-item" defaultValue="" {...register("description", { required: true })} placeholder="Description"/>
+      <input className="input-item" defaultValue="" {...register("category", { required: true })} placeholder="Category"/>
+      <input className="input-item" defaultValue="" {...register("cover_url", { required: true })} placeholder="Cover URL"/>
+      <input className="input-item" defaultValue="" {...register("publishedat", { required: true })} placeholder="Publisher"/>
+
+      {/* errors will return when field validation fails  */}
+      {errors.exampleRequired && <span>This field is required</span>}
+
+      <input type="submit" />
+    </form>
+    </div>
     </>
   );
 }

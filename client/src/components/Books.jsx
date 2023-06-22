@@ -11,8 +11,8 @@ export default function Books({books, page}) {
  
   return (
    <>
-   <div >
-   <h1>Our Books:</h1>
+   <div className='paged-books-container'>
+   <h1>Our&nbsp;Books from&nbsp;A&nbsp;to&nbsp;Z :</h1>
    {
       books.map((book)=>{
         return (

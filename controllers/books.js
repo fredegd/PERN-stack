@@ -10,12 +10,24 @@ const getBooks = async (req, res) => {
   }
 };
 
-const getLimitedBooks = async (req, res) => {
+const getPagedBooks = async (req, res) => {
   try {
     const { limit, skip } = req.query;
+    const limitQuery = `SELECT * FROM books  ORDER BY title  LIMIT $1 OFFSET $2;`;
+    const countQuery = "SELECT COUNT(*) FROM books;";
 
-    const { rows } = await pool.query("SELECT * FROM books LIMIT $1 OFFSET $2;",[limit, skip]);
-    res.status(200).json(rows);
+
+    const [limitResult, countResult] = await Promise.all([
+      pool.query(limitQuery,[limit, skip]),
+      pool.query(countQuery)
+    ]);
+
+    const result = {
+      books: limitResult.rows,      // Result from the first SELECT query
+      totalBooks: countResult.rows[0].count  // Result from the second SELECT query
+    };
+
+    res.status(200).json(result);
   } catch (error) {
     console.error(error);
     res.status(500).send("Something went wrong");
@@ -51,11 +63,11 @@ const createBook = async (req, res) => {
 const updateBook = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, author, description, category, cover_url, publishedAt } = req.body;
+    const { title, author, description, category, cover_url, publishedat } = req.body;
 
     const { rows } = await pool.query(
-      "UPDATE books SET title=$1, author=$2, description=$3, category=$4, cover_url=$5, publishedAt=$6 WHERE id=$7 RETURNING *;",
-      [title, author, description, category, cover_url, publishedAt,  id]
+      "UPDATE books SET title=$1, author=$2, description=$3, category=$4, cover_url=$5, publishedat=$6 WHERE id=$7 RETURNING *;",
+      [title, author, description, category, cover_url, publishedat,  id]
     );
 
     res.status(200).json(rows[0]);
@@ -83,4 +95,4 @@ const deleteBook = async (req, res) => {
   }
 };
 
-module.exports = { getBooks, getLimitedBooks, getBook, createBook, updateBook, deleteBook };
+module.exports = { getBooks, getPagedBooks, getBook, createBook, updateBook, deleteBook };

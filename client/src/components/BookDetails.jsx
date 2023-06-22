@@ -2,11 +2,16 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
+import InputForm from "./InputForm";
+
 export default function BookDetails() {
-  const [bookDetail, setBookDetails] = useState({});
   const { id } = useParams();
-  // console.log(id, "is the params")
-  useEffect(() => {
+  const [bookDetail, setBookDetails] = useState({});
+  const [editActive, setEditActive] = useState(false)
+
+  
+
+   useEffect(() => {
     axios
       .get(`http://localhost:3003/api/books/${id}`)
       .then((response) => {
@@ -17,12 +22,14 @@ export default function BookDetails() {
   }, []);
 
   const editEntries = ()=>{
+    setEditActive(!editActive);
     console.log("make a put request")
   }
   const deleteBook = ()=>{
     console.log("delete the book")
   }
   return (
+    <>
     <div>
       <div className="book-details paged">
         <img
@@ -41,6 +48,17 @@ export default function BookDetails() {
       </div>
       <button onClick={editEntries}>edit book data</button>
       <button  onClick={deleteBook}>delete book</button>
+      {editActive?<InputForm  editActive={editActive}
+                              id={id} 
+                              title={bookDetail.title} 
+                              author={bookDetail.author} 
+                              description={bookDetail.description} 
+                              category={bookDetail.category}
+                              cover_url={bookDetail.cover_url}
+                              publishedat={bookDetail.publishedat}
+                              />:<></>}
     </div>
+   
+</>
   );
 }

@@ -58,18 +58,29 @@ a {
 .pages {
   width: 30em;
   display: flex;
-  flex-direction: column;
   align-items: center;
 }
 
 .landing{
 height: 100vh;
+width: 100vw;
 display: flex;
 place-items: center;
 }
+.landing img{
+width: 50vw;
+}
 
 .pagination{
-  margin-top: 6em;
+  padding: 1em;
+  background: blue;
+  color: white;
+  position: fixed;
+  bottom: 5em;
+  left: 0;
+}
+.paged-books-container{
+margin-top: 6em;
 }
 
 .form-container {
@@ -84,7 +95,6 @@ place-items: center;
 
 .input-item {
   width: 80%;
-
   margin: 0.5em 0;
   height: 1.5em;
 }
@@ -93,7 +103,7 @@ place-items: center;
 
 @media screen and (max-width: 500px) {
   .pages{
-    width: 24em;
+    width: 100vw;
     background-color: lightgreen;
   }
 }

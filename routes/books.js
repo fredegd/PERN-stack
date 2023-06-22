@@ -1,7 +1,7 @@
 const express = require("express");
 const {
   getBooks,
-  getLimitedBooks,
+  getPagedBooks,
   getBook,
   createBook,
   updateBook,
@@ -12,7 +12,7 @@ const booksRouter = express.Router();
 
 booksRouter.get("/", getBooks);
 
-booksRouter.get("/books", getLimitedBooks);
+booksRouter.get("/books", getPagedBooks);
 
 booksRouter.get("/:id", getBook);
 

@@ -54,13 +54,12 @@ const createBook = async (req, res) => {
       category,
       cover_url,
       publishedat,
-      isActive,
-    } = req.body;
+      } = req.body;
     const { rows } = await pool.query(
-      "INSERT INTO books (title, author, description, category, cover_url, publishedat ) VALUES ($1, $2, $3, $4, $5, $6);",
+      "INSERT INTO books (title, author, description, category, cover_url, publishedat ) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;",
       [title, author, description, category, cover_url, publishedat]
     );
-    res.status(200).json(rows);
+    res.status(200).json(rows[0]);
   } catch (error) {
     console.error(error);
     res.status(500).send("Something went wrong");

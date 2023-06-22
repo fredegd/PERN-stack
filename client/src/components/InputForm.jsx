@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 
 export default function InputForm({
-  editActive,
+  editBookData,
   id,
   title,
   author,
@@ -13,6 +13,7 @@ export default function InputForm({
   cover_url,
   publishedat,
   isactive,
+  handleUpdate
 }) {
 
   const navigate = useNavigate();
@@ -28,14 +29,13 @@ export default function InputForm({
 
   const onSubmit = (data) => {
     console.log(data);
-    if (editActive) {
+    if (editBookData) {
       axios
         .put(`http://localhost:3003/api/books/${id}`, data)
         .then((response) => {
           console.log("Updated with Success:", response.data);
-          
+          handleUpdate(response.data)
           reset();
-          navigate(`/books/${id}`)
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -97,9 +97,11 @@ export default function InputForm({
           <div className="active-check">
             <span>is&nbsp;active?&nbsp;</span>
           <input 
-           className="input-item"
-          //  checked={isactive ? "" : ""}
-           {...register("isactive")} type="checkbox" />
+           type="checkbox"
+          
+           defaultChecked={isactive? true:false}
+           {...register("isactive")} 
+            />
           </div>
            
           {errors.exampleRequired && <span>This field is required</span>}

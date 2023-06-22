@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Search from "./Search";
 import Books from "./Books";
+
 
 export default function Paginator() {
   const [page, setPage] = useState(0);
   const [books, setBooks] = useState([]);
+  const [totalBooks, setTotalBooks] = useState([]);
   const [maxPages, setMaxPages] = useState();
 
-  const booksPerPage = 4;
+  const booksPerPage = 3;
   const skipAmount = booksPerPage * page;
 
   const handlePrevious = () => {
@@ -31,6 +34,7 @@ export default function Paginator() {
       )
       .then((response) => {
         setBooks(response.data.books);
+        setTotalBooks(response.data.totalBooks);
         setMaxPages(
           Math.ceil(parseInt(response.data.totalBooks) / booksPerPage)
         );
@@ -39,15 +43,20 @@ export default function Paginator() {
   }, [page]);
 
   return (
-    <div className="paged ">
+    <div className="footer ">
       <div className="pagination">
-        <button onClick={handlePrevious}>prev page</button>
-        <button onClick={handleNext}>next page</button>
-        <p>
-          page: {page + 1} of {maxPages}
-        </p>
+        <Search/>
+        <div className="pager">
+          <h4>
+            {books.length} of {totalBooks} total Books
+          </h4>
+          <button onClick={handlePrevious}>prev page</button>
+          <button onClick={handleNext}>next page</button>
+          <p>
+            page: {page + 1} of {maxPages}
+          </p>
+        </div>
       </div>
-
       <Books books={books} page={page} />
     </div>
   );

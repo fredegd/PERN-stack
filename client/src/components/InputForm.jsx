@@ -12,6 +12,7 @@ export default function InputForm({
   category,
   cover_url,
   publishedat,
+  isactive,
 }) {
 
   const navigate = useNavigate();
@@ -31,7 +32,8 @@ export default function InputForm({
       axios
         .put(`http://localhost:3003/api/books/${id}`, data)
         .then((response) => {
-          console.log("Success:", response.data);
+          console.log("Updated with Success:", response.data);
+          
           reset();
           navigate(`/books/${id}`)
         })
@@ -42,7 +44,7 @@ export default function InputForm({
       axios
         .post("http://localhost:3003/api/books", data)
         .then((response) => {
-          console.log("Success:", response.data);
+          console.log("Added new item Successfully:", response.data);
           reset();
           navigate(`/books`)
         })
@@ -54,7 +56,7 @@ export default function InputForm({
 
   return (
     <>
-      <div className="form-container paged">
+      <div className="form-container">
         <form className="form-input" onSubmit={handleSubmit(onSubmit)}>
           <input
             className="input-item"
@@ -92,8 +94,16 @@ export default function InputForm({
             {...register("publishedat", { required: true })}
             placeholder="Publisher"
           />
+          <div className="active-check">
+            <span>is&nbsp;active?&nbsp;</span>
+          <input 
+           className="input-item"
+          //  checked={isactive ? "" : ""}
+           {...register("isactive")} type="checkbox" />
+          </div>
+           
           {errors.exampleRequired && <span>This field is required</span>}
-          <input type="submit" />
+          <input className="submit-button" type="submit" value={"Submit"} />
         </form>
       </div>
     </>

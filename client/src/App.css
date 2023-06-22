@@ -8,11 +8,12 @@
   align-items: center;
 }
 
-.paged {
+/* .paged {
   margin-top: 5em;
-}
+} */
 
 .book-details {
+  margin-top: 6em;
   border: solid black;
   width: 100%;
   display: flex;
@@ -54,6 +55,10 @@ a {
   color: red;
   font-size: 2.2rem;
 }
+.navbar a.active{
+  color: black;
+  background:yellow
+}
 
 .pages {
   width: 30em;
@@ -84,7 +89,7 @@ a {
 }
 
 .form-container {
-  padding-top: 3em;
+  margin-top: 6em;
   width: 100%;
 }
 .form-input {
@@ -97,6 +102,17 @@ a {
   width: 80%;
   margin: 0.5em 0;
   height: 1.5em;
+}
+.active-check{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.submit-button{
+  margin: 1em;
+  width: 80%;
+  height: 2.5em;
 }
 
 @media screen and (max-width: 500px) {

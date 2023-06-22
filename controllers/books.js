@@ -70,12 +70,12 @@ const createBook = async (req, res) => {
 const updateBook = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, author, description, category, cover_url, publishedat } =
+    const { title, author, description, category, cover_url, publishedat, isactive} =
       req.body;
 
     const { rows } = await pool.query(
-      "UPDATE books SET title=$1, author=$2, description=$3, category=$4, cover_url=$5, publishedat=$6 WHERE id=$7 RETURNING *;",
-      [title, author, description, category, cover_url, publishedat, id]
+      "UPDATE books SET title=$1, author=$2, description=$3, category=$4, cover_url=$5, publishedat=$6, isactive=$7 WHERE id=$8 RETURNING *;",
+      [title, author, description, category, cover_url, publishedat, isactive,id]
     );
 
     res.status(200).json(rows[0]);

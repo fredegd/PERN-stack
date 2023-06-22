@@ -11,6 +11,7 @@ export default function BookDetails() {
   const [editActive, setEditActive] = useState(false);
   const [deleteMask, setDeleteMask] = useState(false);
 
+
   useEffect(() => {
     axios
       .get(`http://localhost:3003/api/books/${id}`)
@@ -37,7 +38,7 @@ const deleteBook =()=>{
   return (
     <>
       <div>
-        <div className="book-details paged">
+        <div className="book-details">
           <img
             src={bookDetail.cover_url}
             alt={bookDetail.title}
@@ -49,7 +50,7 @@ const deleteBook =()=>{
             <p>{bookDetail.description}</p>
             <p>Caregory: {bookDetail.category}</p>
             <p>Published by: {bookDetail.publishedat}</p>
-            <p>status: {bookDetail.active ? "active" : "not active"}</p>
+            <p>status: {bookDetail.isactive ? "active" : "not active"}</p>
           </div>
         </div>
         <button onClick={() => {deleteMask?setDeleteMask(false):""; setEditActive(!editActive); }}>edit book data</button>
@@ -64,12 +65,13 @@ const deleteBook =()=>{
             category={bookDetail.category}
             cover_url={bookDetail.cover_url}
             publishedat={bookDetail.publishedat}
+            isactive={bookDetail.isactive}
           />
         ) : (
           <></>
         )}
         {deleteMask?(<div className="delete-mask">
-          <h3>PERMANENTLY DELETING {BookDetails.title} by {bookDetail.author}</h3>
+          <h3>PERMANENTLY DELETING "{bookDetail.title}" by "{bookDetail.author}"</h3>
           <h1>ARE YOU SURE?</h1>
           <button onClick={deleteBook} >DELETE PERMANENTLY</button>
         </div>):""}
